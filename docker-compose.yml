@@ -1,10 +1,10 @@
 version: "3.3"
 services:
     helpdeskz:
-        build:
-            context: ./ # root path
-            dockerfile: Dockerfile
-        image: lakuapik/helpdeskz-alpine:latest
+        # build:
+        #     context: ./ # root path
+        #     dockerfile: Dockerfile
+        image: lakuapik/helpdeskz-alpine:2.0.2
         ports:
             - "80:80"
         volumes:
