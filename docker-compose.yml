@@ -1,0 +1,38 @@
+version: "3.3"
+services:
+    helpdeskz:
+        build:
+            context: ./ # root path
+            dockerfile: Dockerfile
+        image: lakuapik/helpdeskz-alpine:latest
+        ports:
+            - "80:80"
+        volumes:
+            - "helpdeskz-data:/data"
+            - type: bind
+              source: ./Helpdesk.php
+              target: /var/www/html/hdz/app/Config/Helpdesk.php
+        networks:
+            - helpdeskz-network
+        healthcheck:
+            test: [ "CMD", "wget", "-nv", "-t1", "--spider", "http://localhost"]
+    mysql:
+        image: mysql:8.0
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: helpdeskz
+            MYSQL_ROOT_PASSWORD: password
+        volumes:
+            - "helpdeskz-mysql-data:/var/lib/mysql"
+        networks:
+            - helpdeskz-network
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping"]
+
+volumes:
+    helpdeskz-data:
+    helpdeskz-mysql-data:
+
+networks:
+    helpdeskz-network:
