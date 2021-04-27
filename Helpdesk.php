@@ -11,7 +11,6 @@
 
 namespace Config;
 
-
 use CodeIgniter\Config\BaseConfig;
 
 class Helpdesk extends BaseConfig
@@ -32,7 +31,7 @@ class Helpdesk extends BaseConfig
     const DB_PREFIX = 'hdz_';
 
     #Database port, do not change it if you are not sure
-    const DB_PORT = 3306;
+    const DB_PORT = '3306';
 
     #URL of your helpdesk
     const SITE_URL = 'http://localhost';
